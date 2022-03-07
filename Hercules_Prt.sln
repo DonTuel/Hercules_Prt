@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hercules_Prt", "Hercules_Prt\Hercules_Prt.csproj", "{733C4767-325F-4F57-90CF-E4FADF027217}"
+	ProjectSection(ProjectDependencies) = postProject
+		{70CDF4CE-C384-41DC-8C93-F00D38F8EC1A} = {70CDF4CE-C384-41DC-8C93-F00D38F8EC1A}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "twEditControls", "..\twEditControls\twEditControls.csproj", "{70CDF4CE-C384-41DC-8C93-F00D38F8EC1A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3F720DD9-E589-48CB-BD70-BFFE213B149A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomExtensions", "..\CustomExtensions\CustomExtensions.csproj", "{F2247CBA-7958-468B-9DA2-51C89C8DD9EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{733C4767-325F-4F57-90CF-E4FADF027217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{733C4767-325F-4F57-90CF-E4FADF027217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{733C4767-325F-4F57-90CF-E4FADF027217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{733C4767-325F-4F57-90CF-E4FADF027217}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70CDF4CE-C384-41DC-8C93-F00D38F8EC1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70CDF4CE-C384-41DC-8C93-F00D38F8EC1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70CDF4CE-C384-41DC-8C93-F00D38F8EC1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70CDF4CE-C384-41DC-8C93-F00D38F8EC1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2247CBA-7958-468B-9DA2-51C89C8DD9EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2247CBA-7958-468B-9DA2-51C89C8DD9EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2247CBA-7958-468B-9DA2-51C89C8DD9EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2247CBA-7958-468B-9DA2-51C89C8DD9EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {11D46CA1-4681-4E0A-A065-E96B80941028}
+	EndGlobalSection
+EndGlobal
