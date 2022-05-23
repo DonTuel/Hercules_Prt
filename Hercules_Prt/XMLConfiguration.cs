@@ -91,7 +91,6 @@ namespace Hercules_Prt
                 MessageBox.Show(ex.Message, "Deserialize error");
             }
             cfg = new XMLConfiguration();
-            cfg.IsDirty = false;
             return cfg;
         }
 
@@ -118,11 +117,20 @@ namespace Hercules_Prt
             return sFileName;
         }
 
-        public void Save(string path)
+        public void Save(string namepath)
         {
+            char[] pSep = { '/', '\\' };
             XmlSerializerNamespaces ns = new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty });
             var serializer = new XmlSerializer(typeof(XMLConfiguration));
-            using (var stream = new FileStream(path, FileMode.Create))
+            if (namepath.LastIndexOfAny(pSep) >= 0)
+            {
+                string path = namepath.Substring(0, namepath.LastIndexOfAny(pSep));
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+            }
+            using (var stream = new FileStream(namepath, FileMode.Create))
             {
                 serializer.Serialize(stream, this, ns);
             }
@@ -209,6 +217,7 @@ namespace Hercules_Prt
 
         public PrinterDefinitionFiles()
         {
+            selectedFile = new SelectedFile();
             filePicks = new List<FileName>();
         }
 
@@ -404,6 +413,11 @@ namespace Hercules_Prt
                 _IsDirty = value;
             }
         }
+
+        public BOJQualifications()
+        {
+            _Qualifications = new List<Qualification>();
+        }
     }
 
     [XmlRoot(ElementName = "Field")]
@@ -530,6 +544,11 @@ namespace Hercules_Prt
                 _IsDirty = value;
             }
         }
+
+        public BOJFields()
+        {
+            _Fields = new List<Field>();
+        }
     }
 
     [XmlRoot(ElementName = "BOJCustomization")]
@@ -623,6 +642,12 @@ namespace Hercules_Prt
                 _IsDirty = value;
             }
         }
+
+        public BOJCustomization()
+        {
+            _BOJQualifications = new BOJQualifications();
+            _BOJFields = new BOJFields();
+        }
     }
 
     [XmlRoot(ElementName = "EOJQualifications")]
@@ -665,6 +690,11 @@ namespace Hercules_Prt
                 _IsDirty = value;
             }
         }
+
+        public EOJQualifications()
+        {
+            _Qualifications = new List<Qualification>();
+        }
     }
 
     [XmlRoot(ElementName = "EOJFields")]
@@ -706,6 +736,11 @@ namespace Hercules_Prt
                 }
                 _IsDirty = value;
             }
+        }
+
+        public EOJFields()
+        {
+            _Fields = new List<Field>();
         }
     }
 
@@ -799,6 +834,12 @@ namespace Hercules_Prt
                 _EOJFields.IsDirty = value;
                 _IsDirty = value;
             }
+        }
+
+        public EOJCustomization()
+        {
+            _EOJQualifications = new EOJQualifications();
+            _EOJFields = new EOJFields();
         }
     }
 
@@ -906,6 +947,12 @@ namespace Hercules_Prt
                 _EOJCustomization.IsDirty = value;
                 _IsDirty = value;
             }
+        }
+
+        public CustomizationData()
+        {
+            _BOJCustomization = new BOJCustomization();
+            _EOJCustomization = new EOJCustomization();
         }
     }
 
@@ -1073,6 +1120,11 @@ namespace Hercules_Prt
                 _DumpPacketsFilePicks.IsDirty = value;
                 _IsDirty = value;
             }
+        }
+
+        public Diagnostics()
+        {
+            _DumpPacketsFilePicks = new DumpPacketsFilePicks();
         }
     }
 
@@ -1832,6 +1884,7 @@ namespace Hercules_Prt
             _PDFOutput = new PDFOutput();
             _HTMLOutput = new HTMLOutput();
             _LPDLPRProcessing = new LPDLPRProcessing();
+            IsDirty = true;
         }
 
         public static XMLHerculesPrt Load(string path)
@@ -1855,15 +1908,23 @@ namespace Hercules_Prt
                 MessageBox.Show(ex.Message, "Deserialize error");
             }
             cfg = new XMLHerculesPrt();
-            cfg.IsDirty = false;
             return cfg;
         }
 
-        public void Save(string path)
+        public void Save(string namepath)
         {
+            char[] pSep = { '/', '\\' };
             XmlSerializerNamespaces ns = new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty });
             var serializer = new XmlSerializer(typeof(XMLHerculesPrt));
-            using (var stream = new FileStream(path, FileMode.Create))
+            if (namepath.LastIndexOfAny(pSep) >= 0)
+            {
+                string path = namepath.Substring(0, namepath.LastIndexOfAny(pSep));
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+            }
+            using (var stream = new FileStream(namepath, FileMode.Create))
             {
                 serializer.Serialize(stream, this, ns);
             }

@@ -22,7 +22,7 @@ namespace Hercules_Prt.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Hercules_Prt.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Hercules_Prt.Properties.Resources", typeof(Resources).Assembly);
@@ -51,12 +51,30 @@ namespace Hercules_Prt.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {\rtf1\ansi\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}\fs21 \par \b Help BOJ/EOJ Fields \b0 \par The Fields tab allows you to specify fields that are available for customization of the output processing. \par \par Information regarding what is available is detailed below. \par \par \b Field Name column values \b0 \par The field name column will contain values that you use in output processing. You should bracket the field name with special characters (except +). \par \par \b For example: \b0 %NA [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string BOJEOJFieldsHelp {
+            get {
+                return ResourceManager.GetString("BOJEOJFieldsHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {\rtf1\ansi\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}\fs21 \par \b Help BOJ/EOJ Fields \b0 \par The Fields tab allows you to specify fields that are available for customization during the output processing. \par \par Information regarding what is available is detailed below. \par \par \b Field Name column values \b0 \par The field name column will contain values that you use in the output processing. You should bracket the field name with special characters (except +). \par \par \b For example: [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string BOJEOJQualificationHelp {
+            get {
+                return ResourceManager.GetString("BOJEOJQualificationHelp", resourceCulture);
             }
         }
     }

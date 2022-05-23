@@ -33,14 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrtMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,6 +48,7 @@
             this.slTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.slConnectionStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.slInfo = new System.Windows.Forms.ToolStripStatusLabel();
+            this.slInfo2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tcMainTabs = new System.Windows.Forms.TabControl();
@@ -87,6 +80,11 @@
             this.ckbTXTOutput = new System.Windows.Forms.CheckBox();
             this.ckbRTFOutput = new System.Windows.Forms.CheckBox();
             this.ckbPDFOutput = new System.Windows.Forms.CheckBox();
+            this.rbDeleteUnmatchedPages = new System.Windows.Forms.RadioButton();
+            this.cbxUnmatchPagesFile = new System.Windows.Forms.ComboBox();
+            this.btnOutputUnmatched = new System.Windows.Forms.Button();
+            this.rbOutputUnmatchedPages = new System.Windows.Forms.RadioButton();
+            this.btnOpenUnmatchedFile = new System.Windows.Forms.Button();
             this.gbxTestLogic = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
             this.btnTestPacketsFile = new System.Windows.Forms.Button();
@@ -110,18 +108,22 @@
             this.ckbPrintBOJSeparators = new System.Windows.Forms.CheckBox();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tlpBOJQualificationInformation = new System.Windows.Forms.TableLayoutPanel();
             this.dgvBOJQualificationInformation = new System.Windows.Forms.DataGridView();
             this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rtbBOJQualificationHelp = new System.Windows.Forms.RichTextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tlpBOJFields = new System.Windows.Forms.TableLayoutPanel();
             this.dgvBOJFields = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rtbBOJFieldsHelp = new System.Windows.Forms.RichTextBox();
             this.tpEOJInfo = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -133,18 +135,22 @@
             this.ckbPrintEOJSeparators = new System.Windows.Forms.CheckBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tpEOJQualifications = new System.Windows.Forms.TabPage();
+            this.tlpEOJQualificationInformation = new System.Windows.Forms.TableLayoutPanel();
             this.dgvEOJQualificationInformation = new System.Windows.Forms.DataGridView();
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rtbEOJQualificationHelp = new System.Windows.Forms.RichTextBox();
             this.tpEOJFields = new System.Windows.Forms.TabPage();
+            this.tlpEOJFields = new System.Windows.Forms.TableLayoutPanel();
             this.dgvEOJFields = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rtbEOJFieldsHelp = new System.Windows.Forms.RichTextBox();
             this.tpTXTOutput = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
@@ -240,8 +246,10 @@
             this.tableLayoutPanel12.SuspendLayout();
             this.tabControl3.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tlpBOJQualificationInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBOJQualificationInformation)).BeginInit();
             this.tabPage4.SuspendLayout();
+            this.tlpBOJFields.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBOJFields)).BeginInit();
             this.tpEOJInfo.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
@@ -249,8 +257,10 @@
             this.tableLayoutPanel10.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tpEOJQualifications.SuspendLayout();
+            this.tlpEOJQualificationInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEOJQualificationInformation)).BeginInit();
             this.tpEOJFields.SuspendLayout();
+            this.tlpEOJFields.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEOJFields)).BeginInit();
             this.tpTXTOutput.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -288,7 +298,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(714, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(744, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -363,11 +373,12 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.slTime,
             this.slConnectionStatus,
-            this.slInfo});
+            this.slInfo,
+            this.slInfo2});
             this.statusStrip1.Location = new System.Drawing.Point(0, 499);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(714, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(744, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -389,6 +400,12 @@
             this.slInfo.Size = new System.Drawing.Size(13, 17);
             this.slInfo.Text = "c";
             // 
+            // slInfo2
+            // 
+            this.slInfo2.Name = "slInfo2";
+            this.slInfo2.Size = new System.Drawing.Size(14, 17);
+            this.slInfo2.Text = "d";
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
@@ -403,7 +420,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(708, 437);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(738, 437);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // tcMainTabs
@@ -423,7 +440,7 @@
             this.tcMainTabs.Name = "tcMainTabs";
             this.tableLayoutPanel1.SetRowSpan(this.tcMainTabs, 3);
             this.tcMainTabs.SelectedIndex = 0;
-            this.tcMainTabs.Size = new System.Drawing.Size(702, 431);
+            this.tcMainTabs.Size = new System.Drawing.Size(732, 431);
             this.tcMainTabs.TabIndex = 0;
             // 
             // tpConnection
@@ -432,7 +449,7 @@
             this.tpConnection.Location = new System.Drawing.Point(4, 24);
             this.tpConnection.Name = "tpConnection";
             this.tpConnection.Padding = new System.Windows.Forms.Padding(3);
-            this.tpConnection.Size = new System.Drawing.Size(694, 403);
+            this.tpConnection.Size = new System.Drawing.Size(724, 403);
             this.tpConnection.TabIndex = 0;
             this.tpConnection.Text = "Connection";
             this.tpConnection.UseVisualStyleBackColor = true;
@@ -456,11 +473,11 @@
             this.tableLayoutPanel2.RowCount = 6;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 112F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 56F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 84F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 148F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(688, 397);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(718, 397);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // gbxDeviceConnection
@@ -470,7 +487,7 @@
             this.gbxDeviceConnection.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbxDeviceConnection.Location = new System.Drawing.Point(3, 3);
             this.gbxDeviceConnection.Name = "gbxDeviceConnection";
-            this.gbxDeviceConnection.Size = new System.Drawing.Size(682, 106);
+            this.gbxDeviceConnection.Size = new System.Drawing.Size(712, 106);
             this.gbxDeviceConnection.TabIndex = 0;
             this.gbxDeviceConnection.TabStop = false;
             this.gbxDeviceConnection.Text = "Hercules Device Connection Info";
@@ -502,7 +519,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(676, 86);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(706, 86);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
             // label1
@@ -533,10 +550,11 @@
             this.ckbConnectOnStart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ckbConnectOnStart.Location = new System.Drawing.Point(469, 3);
             this.ckbConnectOnStart.Name = "ckbConnectOnStart";
-            this.ckbConnectOnStart.Size = new System.Drawing.Size(204, 22);
+            this.ckbConnectOnStart.Size = new System.Drawing.Size(234, 22);
             this.ckbConnectOnStart.TabIndex = 7;
             this.ckbConnectOnStart.Text = "Connect on Start";
             this.ckbConnectOnStart.UseVisualStyleBackColor = true;
+            this.ckbConnectOnStart.CheckedChanged += new System.EventHandler(this.ckbConnectOnStart_CheckedChanged);
             // 
             // label2
             // 
@@ -607,7 +625,7 @@
             this.label20.Enabled = false;
             this.label20.Location = new System.Drawing.Point(505, 28);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(83, 28);
+            this.label20.Size = new System.Drawing.Size(113, 28);
             this.label20.TabIndex = 10;
             this.label20.Text = "seconds";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -619,7 +637,7 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(3, 115);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(682, 50);
+            this.groupBox3.Size = new System.Drawing.Size(712, 50);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Device Output Protocol";
@@ -640,7 +658,7 @@
             this.tableLayoutPanel6.RowCount = 2;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(676, 30);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(706, 30);
             this.tableLayoutPanel6.TabIndex = 0;
             // 
             // rbRawProtocol
@@ -671,7 +689,7 @@
             // btnConnect
             // 
             this.btnConnect.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnConnect.Location = new System.Drawing.Point(515, 368);
+            this.btnConnect.Location = new System.Drawing.Point(545, 368);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(82, 26);
             this.btnConnect.TabIndex = 7;
@@ -682,7 +700,7 @@
             // btnExit
             // 
             this.btnExit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnExit.Location = new System.Drawing.Point(603, 368);
+            this.btnExit.Location = new System.Drawing.Point(633, 368);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(82, 26);
             this.btnExit.TabIndex = 9;
@@ -697,35 +715,43 @@
             this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox7.Location = new System.Drawing.Point(3, 171);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(682, 78);
+            this.groupBox7.Size = new System.Drawing.Size(712, 142);
             this.groupBox7.TabIndex = 10;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Print I/O Characteristics";
             // 
             // tableLayoutPanel14
             // 
-            this.tableLayoutPanel14.ColumnCount = 7;
+            this.tableLayoutPanel14.ColumnCount = 8;
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 136F));
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 94F));
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 136F));
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 136F));
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42F));
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.tableLayoutPanel14.Controls.Add(this.ckbHTMLOutput, 4, 1);
             this.tableLayoutPanel14.Controls.Add(this.label11, 0, 0);
             this.tableLayoutPanel14.Controls.Add(this.txtLinesPerPage, 1, 0);
             this.tableLayoutPanel14.Controls.Add(this.ckbTXTOutput, 0, 1);
             this.tableLayoutPanel14.Controls.Add(this.ckbRTFOutput, 1, 1);
             this.tableLayoutPanel14.Controls.Add(this.ckbPDFOutput, 3, 1);
+            this.tableLayoutPanel14.Controls.Add(this.rbDeleteUnmatchedPages, 0, 2);
+            this.tableLayoutPanel14.Controls.Add(this.cbxUnmatchPagesFile, 1, 3);
+            this.tableLayoutPanel14.Controls.Add(this.btnOutputUnmatched, 6, 3);
+            this.tableLayoutPanel14.Controls.Add(this.rbOutputUnmatchedPages, 0, 3);
+            this.tableLayoutPanel14.Controls.Add(this.btnOpenUnmatchedFile, 7, 3);
             this.tableLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel14.Location = new System.Drawing.Point(3, 17);
             this.tableLayoutPanel14.Name = "tableLayoutPanel14";
-            this.tableLayoutPanel14.RowCount = 3;
+            this.tableLayoutPanel14.RowCount = 5;
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel14.Size = new System.Drawing.Size(676, 58);
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(706, 122);
             this.tableLayoutPanel14.TabIndex = 0;
             // 
             // ckbHTMLOutput
@@ -797,14 +823,76 @@
             this.ckbPDFOutput.UseVisualStyleBackColor = true;
             this.ckbPDFOutput.CheckedChanged += new System.EventHandler(this.ckbPDFOutput_CheckedChanged);
             // 
+            // rbDeleteUnmatchedPages
+            // 
+            this.rbDeleteUnmatchedPages.AutoSize = true;
+            this.rbDeleteUnmatchedPages.Checked = true;
+            this.rbDeleteUnmatchedPages.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rbDeleteUnmatchedPages.Location = new System.Drawing.Point(3, 59);
+            this.rbDeleteUnmatchedPages.Name = "rbDeleteUnmatchedPages";
+            this.rbDeleteUnmatchedPages.Size = new System.Drawing.Size(130, 26);
+            this.rbDeleteUnmatchedPages.TabIndex = 12;
+            this.rbDeleteUnmatchedPages.TabStop = true;
+            this.rbDeleteUnmatchedPages.Text = "Delete unmatched";
+            this.rbDeleteUnmatchedPages.UseVisualStyleBackColor = true;
+            this.rbDeleteUnmatchedPages.CheckedChanged += new System.EventHandler(this.rbDeleteUnmatchedPages_CheckedChanged);
+            // 
+            // cbxUnmatchPagesFile
+            // 
+            this.tableLayoutPanel14.SetColumnSpan(this.cbxUnmatchPagesFile, 5);
+            this.cbxUnmatchPagesFile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbxUnmatchPagesFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxUnmatchPagesFile.FormattingEnabled = true;
+            this.cbxUnmatchPagesFile.Location = new System.Drawing.Point(139, 91);
+            this.cbxUnmatchPagesFile.Name = "cbxUnmatchPagesFile";
+            this.cbxUnmatchPagesFile.Size = new System.Drawing.Size(456, 24);
+            this.cbxUnmatchPagesFile.TabIndex = 11;
+            // 
+            // btnOutputUnmatched
+            // 
+            this.btnOutputUnmatched.BackColor = System.Drawing.Color.Transparent;
+            this.btnOutputUnmatched.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnOutputUnmatched.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOutputUnmatched.Location = new System.Drawing.Point(601, 91);
+            this.btnOutputUnmatched.Name = "btnOutputUnmatched";
+            this.btnOutputUnmatched.Size = new System.Drawing.Size(30, 26);
+            this.btnOutputUnmatched.TabIndex = 10;
+            this.btnOutputUnmatched.Text = "...";
+            this.btnOutputUnmatched.UseVisualStyleBackColor = false;
+            this.btnOutputUnmatched.Click += new System.EventHandler(this.btnOutputUnmatched_Click);
+            // 
+            // rbOutputUnmatchedPages
+            // 
+            this.rbOutputUnmatchedPages.AutoSize = true;
+            this.rbOutputUnmatchedPages.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rbOutputUnmatchedPages.Location = new System.Drawing.Point(3, 91);
+            this.rbOutputUnmatchedPages.Name = "rbOutputUnmatchedPages";
+            this.rbOutputUnmatchedPages.Size = new System.Drawing.Size(130, 26);
+            this.rbOutputUnmatchedPages.TabIndex = 13;
+            this.rbOutputUnmatchedPages.Text = "Output unmatched";
+            this.rbOutputUnmatchedPages.UseVisualStyleBackColor = true;
+            this.rbOutputUnmatchedPages.CheckedChanged += new System.EventHandler(this.rbOutputUnmatchedPages_CheckedChanged);
+            // 
+            // btnOpenUnmatchedFile
+            // 
+            this.btnOpenUnmatchedFile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnOpenUnmatchedFile.Enabled = false;
+            this.btnOpenUnmatchedFile.Location = new System.Drawing.Point(637, 91);
+            this.btnOpenUnmatchedFile.Name = "btnOpenUnmatchedFile";
+            this.btnOpenUnmatchedFile.Size = new System.Drawing.Size(66, 26);
+            this.btnOpenUnmatchedFile.TabIndex = 14;
+            this.btnOpenUnmatchedFile.Text = "Open";
+            this.btnOpenUnmatchedFile.UseVisualStyleBackColor = true;
+            this.btnOpenUnmatchedFile.Click += new System.EventHandler(this.btnOpenUnmatchedFile_Click);
+            // 
             // gbxTestLogic
             // 
             this.tableLayoutPanel2.SetColumnSpan(this.gbxTestLogic, 4);
             this.gbxTestLogic.Controls.Add(this.tableLayoutPanel22);
             this.gbxTestLogic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbxTestLogic.Location = new System.Drawing.Point(3, 255);
+            this.gbxTestLogic.Location = new System.Drawing.Point(3, 319);
             this.gbxTestLogic.Name = "gbxTestLogic";
-            this.gbxTestLogic.Size = new System.Drawing.Size(682, 54);
+            this.gbxTestLogic.Size = new System.Drawing.Size(712, 54);
             this.gbxTestLogic.TabIndex = 11;
             this.gbxTestLogic.TabStop = false;
             this.gbxTestLogic.Text = "Test Logic";
@@ -826,15 +914,14 @@
             this.tableLayoutPanel22.RowCount = 2;
             this.tableLayoutPanel22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel22.Size = new System.Drawing.Size(676, 34);
+            this.tableLayoutPanel22.Size = new System.Drawing.Size(706, 34);
             this.tableLayoutPanel22.TabIndex = 0;
             // 
             // btnTestPacketsFile
             // 
             this.btnTestPacketsFile.BackColor = System.Drawing.Color.Transparent;
-            this.btnTestPacketsFile.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnTestPacketsFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTestPacketsFile.Location = new System.Drawing.Point(643, 3);
+            this.btnTestPacketsFile.Location = new System.Drawing.Point(673, 3);
             this.btnTestPacketsFile.Name = "btnTestPacketsFile";
             this.btnTestPacketsFile.Size = new System.Drawing.Size(30, 26);
             this.btnTestPacketsFile.TabIndex = 9;
@@ -856,10 +943,11 @@
             // cbxTestPacketsFile
             // 
             this.cbxTestPacketsFile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbxTestPacketsFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxTestPacketsFile.FormattingEnabled = true;
             this.cbxTestPacketsFile.Location = new System.Drawing.Point(83, 3);
             this.cbxTestPacketsFile.Name = "cbxTestPacketsFile";
-            this.cbxTestPacketsFile.Size = new System.Drawing.Size(554, 23);
+            this.cbxTestPacketsFile.Size = new System.Drawing.Size(584, 24);
             this.cbxTestPacketsFile.TabIndex = 10;
             // 
             // tpLPDLPRInfo
@@ -867,7 +955,7 @@
             this.tpLPDLPRInfo.Controls.Add(this.tableLayoutPanel25);
             this.tpLPDLPRInfo.Location = new System.Drawing.Point(4, 24);
             this.tpLPDLPRInfo.Name = "tpLPDLPRInfo";
-            this.tpLPDLPRInfo.Size = new System.Drawing.Size(694, 403);
+            this.tpLPDLPRInfo.Size = new System.Drawing.Size(724, 403);
             this.tpLPDLPRInfo.TabIndex = 8;
             this.tpLPDLPRInfo.Text = "LPD/LPR Processing";
             this.tpLPDLPRInfo.UseVisualStyleBackColor = true;
@@ -889,7 +977,7 @@
             this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel25.Size = new System.Drawing.Size(694, 403);
+            this.tableLayoutPanel25.Size = new System.Drawing.Size(724, 403);
             this.tableLayoutPanel25.TabIndex = 2;
             // 
             // groupBox12
@@ -899,7 +987,7 @@
             this.groupBox12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox12.Location = new System.Drawing.Point(3, 3);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(688, 50);
+            this.groupBox12.Size = new System.Drawing.Size(718, 50);
             this.groupBox12.TabIndex = 0;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "LPD Information";
@@ -922,7 +1010,7 @@
             this.tableLayoutPanel27.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel27.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel27.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel27.Size = new System.Drawing.Size(682, 30);
+            this.tableLayoutPanel27.Size = new System.Drawing.Size(712, 30);
             this.tableLayoutPanel27.TabIndex = 2;
             // 
             // label22
@@ -943,7 +1031,7 @@
             this.cbxLPDLPRWorkDir.FormattingEnabled = true;
             this.cbxLPDLPRWorkDir.Location = new System.Drawing.Point(131, 3);
             this.cbxLPDLPRWorkDir.Name = "cbxLPDLPRWorkDir";
-            this.cbxLPDLPRWorkDir.Size = new System.Drawing.Size(512, 23);
+            this.cbxLPDLPRWorkDir.Size = new System.Drawing.Size(542, 23);
             this.cbxLPDLPRWorkDir.TabIndex = 3;
             this.cbxLPDLPRWorkDir.TextChanged += new System.EventHandler(this.cbxLPDLPRWorkDir_TextChanged);
             this.cbxLPDLPRWorkDir.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbxLPDLPRWorkDir_KeyUp);
@@ -953,7 +1041,7 @@
             this.btnLPDLPRWorkDir.BackColor = System.Drawing.Color.Transparent;
             this.btnLPDLPRWorkDir.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnLPDLPRWorkDir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLPDLPRWorkDir.Location = new System.Drawing.Point(649, 3);
+            this.btnLPDLPRWorkDir.Location = new System.Drawing.Point(679, 3);
             this.btnLPDLPRWorkDir.Name = "btnLPDLPRWorkDir";
             this.btnLPDLPRWorkDir.Size = new System.Drawing.Size(30, 22);
             this.btnLPDLPRWorkDir.TabIndex = 5;
@@ -966,7 +1054,7 @@
             this.tpBOJInfo.Controls.Add(this.tableLayoutPanel11);
             this.tpBOJInfo.Location = new System.Drawing.Point(4, 24);
             this.tpBOJInfo.Name = "tpBOJInfo";
-            this.tpBOJInfo.Size = new System.Drawing.Size(694, 403);
+            this.tpBOJInfo.Size = new System.Drawing.Size(724, 403);
             this.tpBOJInfo.TabIndex = 4;
             this.tpBOJInfo.Text = "BOJ Processing";
             this.tpBOJInfo.UseVisualStyleBackColor = true;
@@ -989,7 +1077,7 @@
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(694, 403);
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(724, 403);
             this.tableLayoutPanel11.TabIndex = 3;
             // 
             // groupBox6
@@ -999,7 +1087,7 @@
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox6.Location = new System.Drawing.Point(3, 3);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(688, 51);
+            this.groupBox6.Size = new System.Drawing.Size(718, 51);
             this.groupBox6.TabIndex = 0;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Beginning of Job Separator Information";
@@ -1024,12 +1112,13 @@
             this.tableLayoutPanel12.RowCount = 2;
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel12.Size = new System.Drawing.Size(682, 31);
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(712, 31);
             this.tableLayoutPanel12.TabIndex = 2;
             // 
             // txtTrailingBOJSeparatorPages
             // 
             this.txtTrailingBOJSeparatorPages.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtTrailingBOJSeparatorPages.Enabled = false;
             this.txtTrailingBOJSeparatorPages.Location = new System.Drawing.Point(378, 3);
             this.txtTrailingBOJSeparatorPages.Mask = "00";
             this.txtTrailingBOJSeparatorPages.Name = "txtTrailingBOJSeparatorPages";
@@ -1040,6 +1129,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label7.Enabled = false;
             this.label7.Location = new System.Drawing.Point(206, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(166, 28);
@@ -1051,6 +1141,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label9.Enabled = false;
             this.label9.Location = new System.Drawing.Point(3, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(162, 28);
@@ -1061,6 +1152,7 @@
             // txtBOJSeparatorPages
             // 
             this.txtBOJSeparatorPages.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBOJSeparatorPages.Enabled = false;
             this.txtBOJSeparatorPages.Location = new System.Drawing.Point(171, 3);
             this.txtBOJSeparatorPages.Mask = "00";
             this.txtBOJSeparatorPages.Name = "txtBOJSeparatorPages";
@@ -1089,30 +1181,37 @@
             this.tabControl3.Name = "tabControl3";
             this.tableLayoutPanel11.SetRowSpan(this.tabControl3, 2);
             this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(688, 310);
+            this.tabControl3.Size = new System.Drawing.Size(718, 310);
             this.tabControl3.TabIndex = 2;
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.dgvBOJQualificationInformation);
+            this.tabPage3.Controls.Add(this.tlpBOJQualificationInformation);
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(680, 282);
+            this.tabPage3.Size = new System.Drawing.Size(710, 282);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Qualification Information";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // tlpBOJQualificationInformation
+            // 
+            this.tlpBOJQualificationInformation.ColumnCount = 2;
+            this.tlpBOJQualificationInformation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
+            this.tlpBOJQualificationInformation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpBOJQualificationInformation.Controls.Add(this.dgvBOJQualificationInformation, 0, 0);
+            this.tlpBOJQualificationInformation.Controls.Add(this.rtbBOJQualificationHelp, 1, 0);
+            this.tlpBOJQualificationInformation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpBOJQualificationInformation.Location = new System.Drawing.Point(3, 3);
+            this.tlpBOJQualificationInformation.Name = "tlpBOJQualificationInformation";
+            this.tlpBOJQualificationInformation.RowCount = 1;
+            this.tlpBOJQualificationInformation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpBOJQualificationInformation.Size = new System.Drawing.Size(704, 276);
+            this.tlpBOJQualificationInformation.TabIndex = 2;
+            // 
             // dgvBOJQualificationInformation
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBOJQualificationInformation.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvBOJQualificationInformation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBOJQualificationInformation.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewCheckBoxColumn2,
@@ -1122,17 +1221,9 @@
             this.dgvBOJQualificationInformation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvBOJQualificationInformation.Location = new System.Drawing.Point(3, 3);
             this.dgvBOJQualificationInformation.Name = "dgvBOJQualificationInformation";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBOJQualificationInformation.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvBOJQualificationInformation.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvBOJQualificationInformation.Size = new System.Drawing.Size(674, 276);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvBOJQualificationInformation.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvBOJQualificationInformation.Size = new System.Drawing.Size(463, 270);
             this.dgvBOJQualificationInformation.TabIndex = 1;
             this.dgvBOJQualificationInformation.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCellValueChanged);
             this.dgvBOJQualificationInformation.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvRowChanged);
@@ -1142,44 +1233,66 @@
             // 
             this.dataGridViewCheckBoxColumn2.HeaderText = "Must be true";
             this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
+            this.dataGridViewCheckBoxColumn2.Width = 96;
             // 
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.HeaderText = "Line";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 48;
             // 
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.HeaderText = "Column";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 56;
             // 
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.HeaderText = "Value";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn6.Width = 160;
+            // 
+            // rtbBOJQualificationHelp
+            // 
+            this.rtbBOJQualificationHelp.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.rtbBOJQualificationHelp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbBOJQualificationHelp.Location = new System.Drawing.Point(472, 3);
+            this.rtbBOJQualificationHelp.Name = "rtbBOJQualificationHelp";
+            this.rtbBOJQualificationHelp.ReadOnly = true;
+            this.rtbBOJQualificationHelp.Size = new System.Drawing.Size(229, 270);
+            this.rtbBOJQualificationHelp.TabIndex = 2;
+            this.rtbBOJQualificationHelp.Text = "";
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.dgvBOJFields);
+            this.tabPage4.Controls.Add(this.tlpBOJFields);
             this.tabPage4.Location = new System.Drawing.Point(4, 24);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(680, 282);
+            this.tabPage4.Size = new System.Drawing.Size(710, 282);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Fields";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // tlpBOJFields
+            // 
+            this.tlpBOJFields.ColumnCount = 2;
+            this.tlpBOJFields.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
+            this.tlpBOJFields.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpBOJFields.Controls.Add(this.dgvBOJFields, 0, 0);
+            this.tlpBOJFields.Controls.Add(this.rtbBOJFieldsHelp, 1, 0);
+            this.tlpBOJFields.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpBOJFields.Location = new System.Drawing.Point(3, 3);
+            this.tlpBOJFields.Name = "tlpBOJFields";
+            this.tlpBOJFields.RowCount = 1;
+            this.tlpBOJFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpBOJFields.Size = new System.Drawing.Size(704, 276);
+            this.tlpBOJFields.TabIndex = 3;
+            // 
             // dgvBOJFields
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBOJFields.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvBOJFields.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBOJFields.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn7,
@@ -1190,17 +1303,9 @@
             this.dgvBOJFields.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvBOJFields.Location = new System.Drawing.Point(3, 3);
             this.dgvBOJFields.Name = "dgvBOJFields";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBOJFields.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvBOJFields.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvBOJFields.Size = new System.Drawing.Size(674, 276);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvBOJFields.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvBOJFields.Size = new System.Drawing.Size(463, 270);
             this.dgvBOJFields.TabIndex = 2;
             this.dgvBOJFields.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCellValueChanged);
             this.dgvBOJFields.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvRowChanged);
@@ -1210,38 +1315,53 @@
             // 
             this.dataGridViewTextBoxColumn7.HeaderText = "Field Name";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.Width = 96;
             // 
             // dataGridViewTextBoxColumn8
             // 
             this.dataGridViewTextBoxColumn8.HeaderText = "Line";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             this.dataGridViewTextBoxColumn8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn8.Width = 48;
             // 
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.HeaderText = "Column";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             this.dataGridViewTextBoxColumn9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn9.Width = 56;
             // 
             // dataGridViewTextBoxColumn10
             // 
             this.dataGridViewTextBoxColumn10.HeaderText = "Width";
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             this.dataGridViewTextBoxColumn10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn10.Width = 48;
             // 
             // dataGridViewTextBoxColumn11
             // 
             this.dataGridViewTextBoxColumn11.HeaderText = "Default if blank";
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             this.dataGridViewTextBoxColumn11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn11.Width = 200;
+            this.dataGridViewTextBoxColumn11.Width = 160;
+            // 
+            // rtbBOJFieldsHelp
+            // 
+            this.rtbBOJFieldsHelp.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.rtbBOJFieldsHelp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbBOJFieldsHelp.Location = new System.Drawing.Point(472, 3);
+            this.rtbBOJFieldsHelp.Name = "rtbBOJFieldsHelp";
+            this.rtbBOJFieldsHelp.ReadOnly = true;
+            this.rtbBOJFieldsHelp.Size = new System.Drawing.Size(229, 270);
+            this.rtbBOJFieldsHelp.TabIndex = 3;
+            this.rtbBOJFieldsHelp.Text = "";
             // 
             // tpEOJInfo
             // 
             this.tpEOJInfo.Controls.Add(this.tableLayoutPanel9);
             this.tpEOJInfo.Location = new System.Drawing.Point(4, 24);
             this.tpEOJInfo.Name = "tpEOJInfo";
-            this.tpEOJInfo.Size = new System.Drawing.Size(694, 403);
+            this.tpEOJInfo.Size = new System.Drawing.Size(724, 403);
             this.tpEOJInfo.TabIndex = 2;
             this.tpEOJInfo.Text = "EOJ Processing";
             this.tpEOJInfo.UseVisualStyleBackColor = true;
@@ -1264,7 +1384,7 @@
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(694, 403);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(724, 403);
             this.tableLayoutPanel9.TabIndex = 2;
             // 
             // groupBox5
@@ -1274,7 +1394,7 @@
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox5.Location = new System.Drawing.Point(3, 3);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(688, 51);
+            this.groupBox5.Size = new System.Drawing.Size(718, 51);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "End of Job Separator Information";
@@ -1299,12 +1419,13 @@
             this.tableLayoutPanel10.RowCount = 2;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(682, 31);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(712, 31);
             this.tableLayoutPanel10.TabIndex = 2;
             // 
             // txtTrailingEOJSeparatorPages
             // 
             this.txtTrailingEOJSeparatorPages.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtTrailingEOJSeparatorPages.Enabled = false;
             this.txtTrailingEOJSeparatorPages.Location = new System.Drawing.Point(378, 3);
             this.txtTrailingEOJSeparatorPages.Mask = "00";
             this.txtTrailingEOJSeparatorPages.Name = "txtTrailingEOJSeparatorPages";
@@ -1315,6 +1436,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label8.Enabled = false;
             this.label8.Location = new System.Drawing.Point(206, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(166, 28);
@@ -1326,6 +1448,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label6.Enabled = false;
             this.label6.Location = new System.Drawing.Point(3, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(162, 28);
@@ -1336,6 +1459,7 @@
             // txtEOJSeparatorPages
             // 
             this.txtEOJSeparatorPages.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtEOJSeparatorPages.Enabled = false;
             this.txtEOJSeparatorPages.Location = new System.Drawing.Point(171, 3);
             this.txtEOJSeparatorPages.Mask = "00";
             this.txtEOJSeparatorPages.Name = "txtEOJSeparatorPages";
@@ -1364,30 +1488,37 @@
             this.tabControl2.Name = "tabControl2";
             this.tableLayoutPanel9.SetRowSpan(this.tabControl2, 2);
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(688, 310);
+            this.tabControl2.Size = new System.Drawing.Size(718, 310);
             this.tabControl2.TabIndex = 2;
             // 
             // tpEOJQualifications
             // 
-            this.tpEOJQualifications.Controls.Add(this.dgvEOJQualificationInformation);
+            this.tpEOJQualifications.Controls.Add(this.tlpEOJQualificationInformation);
             this.tpEOJQualifications.Location = new System.Drawing.Point(4, 24);
             this.tpEOJQualifications.Name = "tpEOJQualifications";
             this.tpEOJQualifications.Padding = new System.Windows.Forms.Padding(3);
-            this.tpEOJQualifications.Size = new System.Drawing.Size(680, 282);
+            this.tpEOJQualifications.Size = new System.Drawing.Size(710, 282);
             this.tpEOJQualifications.TabIndex = 0;
             this.tpEOJQualifications.Text = "Qualification Information";
             this.tpEOJQualifications.UseVisualStyleBackColor = true;
             // 
+            // tlpEOJQualificationInformation
+            // 
+            this.tlpEOJQualificationInformation.ColumnCount = 2;
+            this.tlpEOJQualificationInformation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
+            this.tlpEOJQualificationInformation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpEOJQualificationInformation.Controls.Add(this.dgvEOJQualificationInformation, 0, 0);
+            this.tlpEOJQualificationInformation.Controls.Add(this.rtbEOJQualificationHelp, 1, 0);
+            this.tlpEOJQualificationInformation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpEOJQualificationInformation.Location = new System.Drawing.Point(3, 3);
+            this.tlpEOJQualificationInformation.Name = "tlpEOJQualificationInformation";
+            this.tlpEOJQualificationInformation.RowCount = 1;
+            this.tlpEOJQualificationInformation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpEOJQualificationInformation.Size = new System.Drawing.Size(704, 276);
+            this.tlpEOJQualificationInformation.TabIndex = 2;
+            // 
             // dgvEOJQualificationInformation
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEOJQualificationInformation.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvEOJQualificationInformation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEOJQualificationInformation.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewCheckBoxColumn1,
@@ -1397,17 +1528,9 @@
             this.dgvEOJQualificationInformation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEOJQualificationInformation.Location = new System.Drawing.Point(3, 3);
             this.dgvEOJQualificationInformation.Name = "dgvEOJQualificationInformation";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEOJQualificationInformation.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvEOJQualificationInformation.RowsDefaultCellStyle = dataGridViewCellStyle9;
-            this.dgvEOJQualificationInformation.Size = new System.Drawing.Size(674, 276);
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvEOJQualificationInformation.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvEOJQualificationInformation.Size = new System.Drawing.Size(463, 270);
             this.dgvEOJQualificationInformation.TabIndex = 1;
             this.dgvEOJQualificationInformation.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCellValueChanged);
             this.dgvEOJQualificationInformation.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvRowChanged);
@@ -1417,43 +1540,65 @@
             // 
             this.dataGridViewCheckBoxColumn1.HeaderText = "Must be true";
             this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.Width = 96;
             // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.HeaderText = "Line";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 48;
             // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.HeaderText = "Column";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 56;
             // 
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.HeaderText = "Value";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 160;
+            // 
+            // rtbEOJQualificationHelp
+            // 
+            this.rtbEOJQualificationHelp.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.rtbEOJQualificationHelp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbEOJQualificationHelp.Location = new System.Drawing.Point(472, 3);
+            this.rtbEOJQualificationHelp.Name = "rtbEOJQualificationHelp";
+            this.rtbEOJQualificationHelp.ReadOnly = true;
+            this.rtbEOJQualificationHelp.Size = new System.Drawing.Size(229, 270);
+            this.rtbEOJQualificationHelp.TabIndex = 2;
+            this.rtbEOJQualificationHelp.Text = "";
             // 
             // tpEOJFields
             // 
-            this.tpEOJFields.Controls.Add(this.dgvEOJFields);
+            this.tpEOJFields.Controls.Add(this.tlpEOJFields);
             this.tpEOJFields.Location = new System.Drawing.Point(4, 24);
             this.tpEOJFields.Name = "tpEOJFields";
             this.tpEOJFields.Padding = new System.Windows.Forms.Padding(3);
-            this.tpEOJFields.Size = new System.Drawing.Size(680, 282);
+            this.tpEOJFields.Size = new System.Drawing.Size(710, 282);
             this.tpEOJFields.TabIndex = 1;
             this.tpEOJFields.Text = "Fields";
             this.tpEOJFields.UseVisualStyleBackColor = true;
             // 
+            // tlpEOJFields
+            // 
+            this.tlpEOJFields.ColumnCount = 2;
+            this.tlpEOJFields.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
+            this.tlpEOJFields.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpEOJFields.Controls.Add(this.dgvEOJFields, 0, 0);
+            this.tlpEOJFields.Controls.Add(this.rtbEOJFieldsHelp, 1, 0);
+            this.tlpEOJFields.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpEOJFields.Location = new System.Drawing.Point(3, 3);
+            this.tlpEOJFields.Name = "tlpEOJFields";
+            this.tlpEOJFields.RowCount = 1;
+            this.tlpEOJFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpEOJFields.Size = new System.Drawing.Size(704, 276);
+            this.tlpEOJFields.TabIndex = 3;
+            // 
             // dgvEOJFields
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEOJFields.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvEOJFields.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEOJFields.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -1464,17 +1609,9 @@
             this.dgvEOJFields.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEOJFields.Location = new System.Drawing.Point(3, 3);
             this.dgvEOJFields.Name = "dgvEOJFields";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEOJFields.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvEOJFields.RowsDefaultCellStyle = dataGridViewCellStyle12;
-            this.dgvEOJFields.Size = new System.Drawing.Size(674, 276);
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvEOJFields.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvEOJFields.Size = new System.Drawing.Size(463, 270);
             this.dgvEOJFields.TabIndex = 2;
             this.dgvEOJFields.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCellValueChanged);
             this.dgvEOJFields.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvRowChanged);
@@ -1484,27 +1621,42 @@
             // 
             this.Column1.HeaderText = "Field Name";
             this.Column1.Name = "Column1";
+            this.Column1.Width = 96;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Line";
             this.Column2.Name = "Column2";
+            this.Column2.Width = 48;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "Column";
             this.Column3.Name = "Column3";
+            this.Column3.Width = 56;
             // 
             // Column5
             // 
             this.Column5.HeaderText = "Width";
             this.Column5.Name = "Column5";
+            this.Column5.Width = 48;
             // 
             // Column4
             // 
             this.Column4.HeaderText = "Default if blank";
             this.Column4.Name = "Column4";
-            this.Column4.Width = 200;
+            this.Column4.Width = 160;
+            // 
+            // rtbEOJFieldsHelp
+            // 
+            this.rtbEOJFieldsHelp.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.rtbEOJFieldsHelp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbEOJFieldsHelp.Location = new System.Drawing.Point(472, 3);
+            this.rtbEOJFieldsHelp.Name = "rtbEOJFieldsHelp";
+            this.rtbEOJFieldsHelp.ReadOnly = true;
+            this.rtbEOJFieldsHelp.Size = new System.Drawing.Size(229, 270);
+            this.rtbEOJFieldsHelp.TabIndex = 3;
+            this.rtbEOJFieldsHelp.Text = "";
             // 
             // tpTXTOutput
             // 
@@ -1512,7 +1664,7 @@
             this.tpTXTOutput.Location = new System.Drawing.Point(4, 24);
             this.tpTXTOutput.Name = "tpTXTOutput";
             this.tpTXTOutput.Padding = new System.Windows.Forms.Padding(3);
-            this.tpTXTOutput.Size = new System.Drawing.Size(694, 403);
+            this.tpTXTOutput.Size = new System.Drawing.Size(724, 403);
             this.tpTXTOutput.TabIndex = 1;
             this.tpTXTOutput.Text = "TXT Output";
             this.tpTXTOutput.UseVisualStyleBackColor = true;
@@ -1535,7 +1687,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(688, 397);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(718, 397);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // groupBox11
@@ -1545,7 +1697,7 @@
             this.groupBox11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox11.Location = new System.Drawing.Point(3, 89);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(682, 52);
+            this.groupBox11.Size = new System.Drawing.Size(712, 52);
             this.groupBox11.TabIndex = 11;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Page Output Characteristics";
@@ -1569,7 +1721,7 @@
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel21.Size = new System.Drawing.Size(676, 32);
+            this.tableLayoutPanel21.Size = new System.Drawing.Size(706, 32);
             this.tableLayoutPanel21.TabIndex = 0;
             // 
             // label18
@@ -1599,7 +1751,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(682, 80);
+            this.groupBox2.Size = new System.Drawing.Size(712, 80);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Output Destination Information";
@@ -1624,7 +1776,7 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(676, 60);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(706, 60);
             this.tableLayoutPanel5.TabIndex = 2;
             // 
             // cbxTXTFileTemplate
@@ -1634,7 +1786,7 @@
             this.cbxTXTFileTemplate.FormattingEnabled = true;
             this.cbxTXTFileTemplate.Location = new System.Drawing.Point(131, 31);
             this.cbxTXTFileTemplate.Name = "cbxTXTFileTemplate";
-            this.cbxTXTFileTemplate.Size = new System.Drawing.Size(506, 23);
+            this.cbxTXTFileTemplate.Size = new System.Drawing.Size(536, 23);
             this.cbxTXTFileTemplate.TabIndex = 4;
             this.cbxTXTFileTemplate.TextChanged += new System.EventHandler(this.cbxFileTemplate_TextChanged);
             this.cbxTXTFileTemplate.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbxFileTemplate_KeyUp);
@@ -1668,7 +1820,7 @@
             this.cbxTXTOutputDir.FormattingEnabled = true;
             this.cbxTXTOutputDir.Location = new System.Drawing.Point(131, 3);
             this.cbxTXTOutputDir.Name = "cbxTXTOutputDir";
-            this.cbxTXTOutputDir.Size = new System.Drawing.Size(506, 23);
+            this.cbxTXTOutputDir.Size = new System.Drawing.Size(536, 23);
             this.cbxTXTOutputDir.TabIndex = 3;
             this.cbxTXTOutputDir.TextChanged += new System.EventHandler(this.cbxOutputDir_TextChanged);
             this.cbxTXTOutputDir.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbxOutputDir_KeyUp);
@@ -1678,7 +1830,7 @@
             this.btnTXTOutputDir.BackColor = System.Drawing.Color.Transparent;
             this.btnTXTOutputDir.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnTXTOutputDir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTXTOutputDir.Location = new System.Drawing.Point(643, 3);
+            this.btnTXTOutputDir.Location = new System.Drawing.Point(673, 3);
             this.btnTXTOutputDir.Name = "btnTXTOutputDir";
             this.btnTXTOutputDir.Size = new System.Drawing.Size(30, 22);
             this.btnTXTOutputDir.TabIndex = 5;
@@ -1691,7 +1843,7 @@
             this.tpRTFOutput.Controls.Add(this.tableLayoutPanel15);
             this.tpRTFOutput.Location = new System.Drawing.Point(4, 24);
             this.tpRTFOutput.Name = "tpRTFOutput";
-            this.tpRTFOutput.Size = new System.Drawing.Size(694, 403);
+            this.tpRTFOutput.Size = new System.Drawing.Size(724, 403);
             this.tpRTFOutput.TabIndex = 5;
             this.tpRTFOutput.Text = "RTF Output";
             this.tpRTFOutput.UseVisualStyleBackColor = true;
@@ -1713,7 +1865,7 @@
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel15.Size = new System.Drawing.Size(694, 403);
+            this.tableLayoutPanel15.Size = new System.Drawing.Size(724, 403);
             this.tableLayoutPanel15.TabIndex = 2;
             // 
             // groupBox8
@@ -1723,7 +1875,7 @@
             this.groupBox8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox8.Location = new System.Drawing.Point(3, 3);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(688, 80);
+            this.groupBox8.Size = new System.Drawing.Size(718, 80);
             this.groupBox8.TabIndex = 0;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Output Destination Information";
@@ -1748,7 +1900,7 @@
             this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel16.Size = new System.Drawing.Size(682, 60);
+            this.tableLayoutPanel16.Size = new System.Drawing.Size(712, 60);
             this.tableLayoutPanel16.TabIndex = 2;
             // 
             // cbxRTFFileTemplate
@@ -1758,7 +1910,7 @@
             this.cbxRTFFileTemplate.FormattingEnabled = true;
             this.cbxRTFFileTemplate.Location = new System.Drawing.Point(131, 31);
             this.cbxRTFFileTemplate.Name = "cbxRTFFileTemplate";
-            this.cbxRTFFileTemplate.Size = new System.Drawing.Size(512, 23);
+            this.cbxRTFFileTemplate.Size = new System.Drawing.Size(542, 23);
             this.cbxRTFFileTemplate.TabIndex = 4;
             this.cbxRTFFileTemplate.TextChanged += new System.EventHandler(this.cbxFileTemplate_TextChanged);
             this.cbxRTFFileTemplate.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbxFileTemplate_KeyUp);
@@ -1792,7 +1944,7 @@
             this.cbxRTFOutputDir.FormattingEnabled = true;
             this.cbxRTFOutputDir.Location = new System.Drawing.Point(131, 3);
             this.cbxRTFOutputDir.Name = "cbxRTFOutputDir";
-            this.cbxRTFOutputDir.Size = new System.Drawing.Size(512, 23);
+            this.cbxRTFOutputDir.Size = new System.Drawing.Size(542, 23);
             this.cbxRTFOutputDir.TabIndex = 3;
             this.cbxRTFOutputDir.TextChanged += new System.EventHandler(this.cbxOutputDir_TextChanged);
             this.cbxRTFOutputDir.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbxOutputDir_KeyUp);
@@ -1802,7 +1954,7 @@
             this.btnRTFOutputDir.BackColor = System.Drawing.Color.Transparent;
             this.btnRTFOutputDir.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnRTFOutputDir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRTFOutputDir.Location = new System.Drawing.Point(649, 3);
+            this.btnRTFOutputDir.Location = new System.Drawing.Point(679, 3);
             this.btnRTFOutputDir.Name = "btnRTFOutputDir";
             this.btnRTFOutputDir.Size = new System.Drawing.Size(30, 22);
             this.btnRTFOutputDir.TabIndex = 5;
@@ -1815,7 +1967,7 @@
             this.tpPDFOutput.Controls.Add(this.tableLayoutPanel17);
             this.tpPDFOutput.Location = new System.Drawing.Point(4, 24);
             this.tpPDFOutput.Name = "tpPDFOutput";
-            this.tpPDFOutput.Size = new System.Drawing.Size(694, 403);
+            this.tpPDFOutput.Size = new System.Drawing.Size(724, 403);
             this.tpPDFOutput.TabIndex = 6;
             this.tpPDFOutput.Text = "PDF Output";
             this.tpPDFOutput.UseVisualStyleBackColor = true;
@@ -1838,7 +1990,7 @@
             this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel17.Size = new System.Drawing.Size(694, 403);
+            this.tableLayoutPanel17.Size = new System.Drawing.Size(724, 403);
             this.tableLayoutPanel17.TabIndex = 2;
             // 
             // tableLayoutPanel24
@@ -1860,7 +2012,7 @@
             this.tableLayoutPanel24.RowCount = 2;
             this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel24.Size = new System.Drawing.Size(688, 36);
+            this.tableLayoutPanel24.Size = new System.Drawing.Size(718, 36);
             this.tableLayoutPanel24.TabIndex = 4;
             // 
             // cbxPDFPaperSize
@@ -1904,7 +2056,7 @@
             this.groupBox9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox9.Location = new System.Drawing.Point(3, 3);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(688, 80);
+            this.groupBox9.Size = new System.Drawing.Size(718, 80);
             this.groupBox9.TabIndex = 0;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Output Destination Information";
@@ -1929,7 +2081,7 @@
             this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel18.Size = new System.Drawing.Size(682, 60);
+            this.tableLayoutPanel18.Size = new System.Drawing.Size(712, 60);
             this.tableLayoutPanel18.TabIndex = 2;
             // 
             // cbxPDFFileTemplate
@@ -1939,7 +2091,7 @@
             this.cbxPDFFileTemplate.FormattingEnabled = true;
             this.cbxPDFFileTemplate.Location = new System.Drawing.Point(131, 31);
             this.cbxPDFFileTemplate.Name = "cbxPDFFileTemplate";
-            this.cbxPDFFileTemplate.Size = new System.Drawing.Size(512, 23);
+            this.cbxPDFFileTemplate.Size = new System.Drawing.Size(542, 23);
             this.cbxPDFFileTemplate.TabIndex = 4;
             this.cbxPDFFileTemplate.TextChanged += new System.EventHandler(this.cbxFileTemplate_TextChanged);
             this.cbxPDFFileTemplate.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbxFileTemplate_KeyUp);
@@ -1973,7 +2125,7 @@
             this.cbxPDFOutputDir.FormattingEnabled = true;
             this.cbxPDFOutputDir.Location = new System.Drawing.Point(131, 3);
             this.cbxPDFOutputDir.Name = "cbxPDFOutputDir";
-            this.cbxPDFOutputDir.Size = new System.Drawing.Size(512, 23);
+            this.cbxPDFOutputDir.Size = new System.Drawing.Size(542, 23);
             this.cbxPDFOutputDir.TabIndex = 3;
             this.cbxPDFOutputDir.TextChanged += new System.EventHandler(this.cbxOutputDir_TextChanged);
             this.cbxPDFOutputDir.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbxOutputDir_KeyUp);
@@ -1983,7 +2135,7 @@
             this.btnPDFOutputDir.BackColor = System.Drawing.Color.Transparent;
             this.btnPDFOutputDir.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPDFOutputDir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPDFOutputDir.Location = new System.Drawing.Point(649, 3);
+            this.btnPDFOutputDir.Location = new System.Drawing.Point(679, 3);
             this.btnPDFOutputDir.Name = "btnPDFOutputDir";
             this.btnPDFOutputDir.Size = new System.Drawing.Size(30, 22);
             this.btnPDFOutputDir.TabIndex = 5;
@@ -1996,7 +2148,7 @@
             this.tpHTMLOutput.Controls.Add(this.tableLayoutPanel19);
             this.tpHTMLOutput.Location = new System.Drawing.Point(4, 24);
             this.tpHTMLOutput.Name = "tpHTMLOutput";
-            this.tpHTMLOutput.Size = new System.Drawing.Size(694, 403);
+            this.tpHTMLOutput.Size = new System.Drawing.Size(724, 403);
             this.tpHTMLOutput.TabIndex = 7;
             this.tpHTMLOutput.Text = "HTML Output";
             this.tpHTMLOutput.UseVisualStyleBackColor = true;
@@ -2019,7 +2171,7 @@
             this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel19.Size = new System.Drawing.Size(694, 403);
+            this.tableLayoutPanel19.Size = new System.Drawing.Size(724, 403);
             this.tableLayoutPanel19.TabIndex = 3;
             // 
             // tableLayoutPanel23
@@ -2039,7 +2191,7 @@
             this.tableLayoutPanel23.RowCount = 2;
             this.tableLayoutPanel23.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel23.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel23.Size = new System.Drawing.Size(688, 32);
+            this.tableLayoutPanel23.Size = new System.Drawing.Size(718, 32);
             this.tableLayoutPanel23.TabIndex = 3;
             // 
             // ckbHTMLHeader
@@ -2061,7 +2213,7 @@
             this.groupBox10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox10.Location = new System.Drawing.Point(3, 3);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(688, 80);
+            this.groupBox10.Size = new System.Drawing.Size(718, 80);
             this.groupBox10.TabIndex = 0;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Output Destination Information";
@@ -2086,7 +2238,7 @@
             this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel20.Size = new System.Drawing.Size(682, 60);
+            this.tableLayoutPanel20.Size = new System.Drawing.Size(712, 60);
             this.tableLayoutPanel20.TabIndex = 2;
             // 
             // cbxHTMLFileTemplate
@@ -2096,7 +2248,7 @@
             this.cbxHTMLFileTemplate.FormattingEnabled = true;
             this.cbxHTMLFileTemplate.Location = new System.Drawing.Point(131, 31);
             this.cbxHTMLFileTemplate.Name = "cbxHTMLFileTemplate";
-            this.cbxHTMLFileTemplate.Size = new System.Drawing.Size(512, 23);
+            this.cbxHTMLFileTemplate.Size = new System.Drawing.Size(542, 23);
             this.cbxHTMLFileTemplate.TabIndex = 4;
             this.cbxHTMLFileTemplate.TextChanged += new System.EventHandler(this.cbxFileTemplate_TextChanged);
             this.cbxHTMLFileTemplate.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbxFileTemplate_KeyUp);
@@ -2130,7 +2282,7 @@
             this.cbxHTMLOutputDir.FormattingEnabled = true;
             this.cbxHTMLOutputDir.Location = new System.Drawing.Point(131, 3);
             this.cbxHTMLOutputDir.Name = "cbxHTMLOutputDir";
-            this.cbxHTMLOutputDir.Size = new System.Drawing.Size(512, 23);
+            this.cbxHTMLOutputDir.Size = new System.Drawing.Size(542, 23);
             this.cbxHTMLOutputDir.TabIndex = 3;
             this.cbxHTMLOutputDir.TextChanged += new System.EventHandler(this.cbxOutputDir_TextChanged);
             this.cbxHTMLOutputDir.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbxOutputDir_KeyUp);
@@ -2140,7 +2292,7 @@
             this.btnHTMLOutputDir.BackColor = System.Drawing.Color.Transparent;
             this.btnHTMLOutputDir.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnHTMLOutputDir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHTMLOutputDir.Location = new System.Drawing.Point(649, 3);
+            this.btnHTMLOutputDir.Location = new System.Drawing.Point(679, 3);
             this.btnHTMLOutputDir.Name = "btnHTMLOutputDir";
             this.btnHTMLOutputDir.Size = new System.Drawing.Size(30, 22);
             this.btnHTMLOutputDir.TabIndex = 5;
@@ -2153,7 +2305,7 @@
             this.tpDiagnostics.Controls.Add(this.tableLayoutPanel7);
             this.tpDiagnostics.Location = new System.Drawing.Point(4, 24);
             this.tpDiagnostics.Name = "tpDiagnostics";
-            this.tpDiagnostics.Size = new System.Drawing.Size(694, 403);
+            this.tpDiagnostics.Size = new System.Drawing.Size(724, 403);
             this.tpDiagnostics.TabIndex = 3;
             this.tpDiagnostics.Text = "Diagnostics";
             this.tpDiagnostics.UseVisualStyleBackColor = true;
@@ -2177,7 +2329,7 @@
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 82F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(694, 403);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(724, 403);
             this.tableLayoutPanel7.TabIndex = 2;
             // 
             // groupBox4
@@ -2187,7 +2339,7 @@
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Location = new System.Drawing.Point(3, 3);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(688, 76);
+            this.groupBox4.Size = new System.Drawing.Size(718, 76);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Diagnostics";
@@ -2216,7 +2368,7 @@
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(682, 56);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(712, 56);
             this.tableLayoutPanel8.TabIndex = 2;
             // 
             // cbDumpPacketsFile
@@ -2319,7 +2471,7 @@
             // btnSaveDiagnostics
             // 
             this.btnSaveDiagnostics.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSaveDiagnostics.Location = new System.Drawing.Point(621, 376);
+            this.btnSaveDiagnostics.Location = new System.Drawing.Point(651, 376);
             this.btnSaveDiagnostics.Name = "btnSaveDiagnostics";
             this.btnSaveDiagnostics.Size = new System.Drawing.Size(70, 24);
             this.btnSaveDiagnostics.TabIndex = 3;
@@ -2329,7 +2481,7 @@
             // btnClearDiagnostics
             // 
             this.btnClearDiagnostics.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnClearDiagnostics.Location = new System.Drawing.Point(544, 376);
+            this.btnClearDiagnostics.Location = new System.Drawing.Point(574, 376);
             this.btnClearDiagnostics.Name = "btnClearDiagnostics";
             this.btnClearDiagnostics.Size = new System.Drawing.Size(71, 24);
             this.btnClearDiagnostics.TabIndex = 4;
@@ -2362,7 +2514,7 @@
             this.tableLayoutPanel13.RowCount = 2;
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(714, 475);
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(744, 475);
             this.tableLayoutPanel13.TabIndex = 5;
             // 
             // btnPrinterDefinitionFile
@@ -2370,7 +2522,7 @@
             this.btnPrinterDefinitionFile.BackColor = System.Drawing.Color.Transparent;
             this.btnPrinterDefinitionFile.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPrinterDefinitionFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrinterDefinitionFile.Location = new System.Drawing.Point(681, 3);
+            this.btnPrinterDefinitionFile.Location = new System.Drawing.Point(711, 3);
             this.btnPrinterDefinitionFile.Name = "btnPrinterDefinitionFile";
             this.btnPrinterDefinitionFile.Size = new System.Drawing.Size(30, 26);
             this.btnPrinterDefinitionFile.TabIndex = 6;
@@ -2395,7 +2547,7 @@
             this.cbxPrinterDefinitionFile.FormattingEnabled = true;
             this.cbxPrinterDefinitionFile.Location = new System.Drawing.Point(139, 3);
             this.cbxPrinterDefinitionFile.Name = "cbxPrinterDefinitionFile";
-            this.cbxPrinterDefinitionFile.Size = new System.Drawing.Size(536, 23);
+            this.cbxPrinterDefinitionFile.Size = new System.Drawing.Size(566, 23);
             this.cbxPrinterDefinitionFile.TabIndex = 7;
             this.cbxPrinterDefinitionFile.TextChanged += new System.EventHandler(this.cbxPrinterDefinitionFile_TextChanged);
             this.cbxPrinterDefinitionFile.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbxPrinterDefinitionFile_KeyUp);
@@ -2414,18 +2566,19 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(714, 521);
+            this.ClientSize = new System.Drawing.Size(744, 521);
             this.Controls.Add(this.tableLayoutPanel13);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(730, 560);
+            this.MinimumSize = new System.Drawing.Size(760, 560);
             this.Name = "PrtMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Hercules Print Spooler";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PrtMain_FormClosing);
+            this.Shown += new System.EventHandler(this.PrtMain_Shown);
             this.Resize += new System.EventHandler(this.PrtMain_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -2458,8 +2611,10 @@
             this.tableLayoutPanel12.PerformLayout();
             this.tabControl3.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            this.tlpBOJQualificationInformation.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBOJQualificationInformation)).EndInit();
             this.tabPage4.ResumeLayout(false);
+            this.tlpBOJFields.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBOJFields)).EndInit();
             this.tpEOJInfo.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
@@ -2468,8 +2623,10 @@
             this.tableLayoutPanel10.PerformLayout();
             this.tabControl2.ResumeLayout(false);
             this.tpEOJQualifications.ResumeLayout(false);
+            this.tlpEOJQualificationInformation.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEOJQualificationInformation)).EndInit();
             this.tpEOJFields.ResumeLayout(false);
+            this.tlpEOJFields.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEOJFields)).EndInit();
             this.tpTXTOutput.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
@@ -2560,10 +2717,6 @@
         private System.Windows.Forms.CheckBox ckbDisplayInput;
         private System.Windows.Forms.DataGridView dgvEOJQualificationInformation;
         private System.Windows.Forms.TabPage tpBOJInfo;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.MaskedTextBox txtTrailingEOJSeparatorPages;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.MaskedTextBox txtEOJSeparatorPages;
@@ -2571,11 +2724,6 @@
         private System.Windows.Forms.TabPage tpEOJQualifications;
         private System.Windows.Forms.TabPage tpEOJFields;
         private System.Windows.Forms.DataGridView dgvEOJFields;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
@@ -2590,15 +2738,6 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.DataGridView dgvBOJFields;
         private System.Windows.Forms.CheckBox ckbPrintEOJSeparators;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.CheckBox ckbConnectOnStart;
         private System.Windows.Forms.Button btnSaveDiagnostics;
         private System.Windows.Forms.Button btnClearDiagnostics;
@@ -2686,6 +2825,38 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.ComboBox cbxLPDLPRWorkDir;
         private System.Windows.Forms.Button btnLPDLPRWorkDir;
+        private System.Windows.Forms.TableLayoutPanel tlpBOJQualificationInformation;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.RichTextBox rtbBOJQualificationHelp;
+        private System.Windows.Forms.TableLayoutPanel tlpBOJFields;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.RichTextBox rtbBOJFieldsHelp;
+        private System.Windows.Forms.TableLayoutPanel tlpEOJQualificationInformation;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.RichTextBox rtbEOJQualificationHelp;
+        private System.Windows.Forms.TableLayoutPanel tlpEOJFields;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.RichTextBox rtbEOJFieldsHelp;
+        private System.Windows.Forms.RadioButton rbDeleteUnmatchedPages;
+        private System.Windows.Forms.ComboBox cbxUnmatchPagesFile;
+        private System.Windows.Forms.Button btnOutputUnmatched;
+        private System.Windows.Forms.RadioButton rbOutputUnmatchedPages;
+        private System.Windows.Forms.ToolStripStatusLabel slInfo2;
+        private System.Windows.Forms.Button btnOpenUnmatchedFile;
     }
 }
 

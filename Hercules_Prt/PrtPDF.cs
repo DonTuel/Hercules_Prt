@@ -48,20 +48,20 @@ namespace Hercules_Prt
                 case "Fanfold":
                     width = 14.875f * 72f;
                     height = 11f * 72f;
-                    marginTop = -1.7f;
+                    marginTop = 0.0f;
                     marginLeft = 0.0f;
-                    marginBottom = -1.7f;
-                    marginRight = 20.0f;
+                    marginBottom = 0.0f;
+                    marginRight = 0.0f;
                     fontSize = 12.0f;
                     break;
                 case "Letter":
                     width = 11f * 72f;
                     height = 8.5f * 72f;
-                    marginTop = -1.9f;
+                    marginTop = 0.0f;
                     marginLeft = 0.0f;
-                    marginBottom = -1.9f;
+                    marginBottom = 0.0f;
                     marginRight = 0.0f;
-                    fontSize = 10.0f;
+                    fontSize = 9.0f;
                     break;
                 default:
                     break;
@@ -152,6 +152,7 @@ namespace Hercules_Prt
                 Paragraph par = new Paragraph(text);
                 par.SetMargins(marginTop, marginRight, marginBottom, marginLeft); 
                 par.SetFontSize(fontSize);
+                par.SetMultipliedLeading(1.0f);
                 doc.Add(par);
             }
         }

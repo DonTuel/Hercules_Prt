@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using CustomExtensions;
 using CustomStructures;
 
+using Hercules_Prt.Properties;
+
 namespace Hercules_Prt
 {
     public partial class PrtMain : Form
@@ -21,22 +23,26 @@ namespace Hercules_Prt
         private PrtRTF rtfOut;
         private PrtPDF pdfOut;
         private PrtHTML htmlOut;
+        private int docsProcessed = 0;
+        private int unmatchedDocs = 0;
 
         private bool formLoading = true;
         private bool dgvChanged = false;
+        private bool closeApplication = false;
 
         private HerculesConnection _herculesConnection;
         private Action<String> _invokeAction;
         private Globals gbl = new Globals();
 
-        //private List<CustomFieldData> BOJFieldData;
-        //private List<CustomFieldData> EOJFieldData;
         private List<CustomQualificationData> BOJQualifications;
         private List<CustomQualificationData> EOJQualifications;
         private List<CustomFieldValue> BOJFieldValues;
         private List<CustomFieldValue> EOJFieldValues;
 
         private List<TabPage> hiddenPages = new List<TabPage>();
+
+        private string outputFileName = string.Empty;
+        private StreamWriter outputFileStream;
 
         public PrtMain()
         {
@@ -48,8 +54,9 @@ namespace Hercules_Prt
         private void MyInitializeComponent()
         {
             slTime.Text = "";
-            slConnectionStatus.Text = "";
+            slConnectionStatus.Text = "Not connected";
             slInfo.Text = "";
+            slInfo2.Text = "";
 
             LoadConfiguration();
             txtOut = new PrtTXT(xmlHerculesPrt);
@@ -92,6 +99,13 @@ namespace Hercules_Prt
                 hiddenPages.Add(tpHTMLOutput);
                 tcMainTabs.TabPages.Remove(tpHTMLOutput);
             }
+
+            rtbBOJFieldsHelp.Rtf = Resources.BOJEOJFieldsHelp;
+            rtbEOJFieldsHelp.Rtf = Resources.BOJEOJFieldsHelp;
+            rtbBOJQualificationHelp.Rtf = Resources.BOJEOJQualificationHelp;
+            rtbEOJQualificationHelp.Rtf = Resources.BOJEOJQualificationHelp;
+
+            tTimer.Enabled = true;
 
             if (xmlHerculesPrt.Connection.ConnectAtStartChecked.ToBool())
             {
@@ -152,6 +166,9 @@ namespace Hercules_Prt
             ckbPDFOutput.Checked = xmlHerculesPrt.CustomizationData.OutputToPDF.ToBool();
             ckbHTMLOutput.Checked = xmlHerculesPrt.CustomizationData.OutputToHTML.ToBool();
 
+            ckbPrintBOJSeparators.Checked = xmlHerculesPrt.CustomizationData.BOJCustomization.BOJPrintBanners.ToBool();
+            ckbPrintEOJSeparators.Checked = xmlHerculesPrt.CustomizationData.EOJCustomization.EOJPrintBanners.ToBool();
+
             if (xmlHerculesPrt.Connection.Protocol == "RAW")
             {
                 rbLPDProtocol.Checked = false;
@@ -164,6 +181,8 @@ namespace Hercules_Prt
                 rbLPDProtocol.Checked = true;
                 txtPort.Text = xmlHerculesPrt.Connection.LPDLPRHostPort.ToString();
             }
+
+            ckbConnectOnStart.Checked = xmlHerculesPrt.Connection.ConnectAtStartChecked.ToBool();
 
             txtLinesPerPage.Text = xmlHerculesPrt.Connection.InputLinesPerPage.ToString();
 
@@ -539,6 +558,11 @@ namespace Hercules_Prt
                     btnConnect.Text = "Disconnect";
                 }
             }
+
+            if (closeApplication)
+            {
+                this.Close();
+            }
         }
 
         private Boolean ConnectToHercules()
@@ -549,7 +573,7 @@ namespace Hercules_Prt
                 DialogResult dr = MessageBox.Show(errMsg, "Connection failure", MessageBoxButtons.YesNo);
                 if (dr == DialogResult.No)
                 {
-                    this.Close();
+                    closeApplication = true;
                 }
             }
             return _herculesConnection.Connected;
@@ -573,26 +597,46 @@ namespace Hercules_Prt
 
         private void PrtMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (xmlHerculesPrt.IsDirty || xmlConfiguration.IsDirty || dgvChanged)
+            if (xmlHerculesPrt.IsDirty || xmlConfiguration.IsDirty || dgvChanged || WindowChanged())
             {
                 DialogResult dr = DialogResult.Yes;
                 String errMsg = "Settings have changed." + Environment.NewLine + Environment.NewLine + "Do you wish to save them?";
                 dr = MessageBox.Show(errMsg, "Closing cleanup", MessageBoxButtons.YesNo);
                 if (dr == DialogResult.Yes)
                 {
-                    if (dgvChanged)
+                    if (cbxPrinterDefinitionFile.Text == "")
                     {
-                        UpdatePrinterDefinitions();
+                        if (SavePrinterDefinitionFile())
+                        {
+                            SaveConfiguration();
+                            UpdatePrinterDefinitions();
+                            xmlHerculesPrt.Save(cbxPrinterDefinitionFile.Text);
+                        }
                     }
-                    SaveConfiguration();
                 }
             }
             e.Cancel = false;
         }
 
+        private Boolean WindowChanged()
+        {
+            if (!((xmlConfiguration.window.main.State == WindowState.ToString()) &&
+                (xmlConfiguration.window.main.Left == Left) &&
+                (xmlConfiguration.window.main.Top == Top) &&
+                (xmlConfiguration.window.main.Width == Width) &&
+                (xmlConfiguration.window.main.Height == Height)))
+            {
+                return true;
+            }
+            return false;
+        }
+
         private void tTimer_Tick(object sender, EventArgs e)
         {
-            slTime.Text = DateTime.Now.ToString();
+            slTime.Text = DateTime.Now.ToString("HH:mm:ss");
+            slInfo.Text = docsProcessed.ToString() + " printed";
+            slInfo2.Text = unmatchedDocs.ToString() + " unmatched";
+
             if (_herculesConnection.Connected)
             {
                 if (_herculesConnection.Stream.DataAvailable)
@@ -612,6 +656,12 @@ namespace Hercules_Prt
                     {
                         ProcessPageBuffer();
                     }
+                    if (_document.Count > 0)
+                    {
+                        ProcessUnknownDocument(_document);
+                        _beginReport = false;
+                        _document = new List<List<string>>();
+                    }
                 }
             }
         }
@@ -623,6 +673,7 @@ namespace Hercules_Prt
         private List<List<string>> _document = new List<List<string>>();
         private List<string> _pageBuff = new List<string>();
         private bool _endOfReport = false;
+        private bool _beginReport = false;
 
         private void ProcessLPRInput()
         {
@@ -909,10 +960,24 @@ namespace Hercules_Prt
 
         private void ProcessPageBuffer()
         {
+            bool processedDocument = false;
+            
             if (BOJSeparator(_pageBuff))
             {
                 GetBOJSeparatorFields(_pageBuff);
             }
+
+            if (_beginReport)
+            {
+                if (_document.Count > 0)
+                {
+                    ProcessUnknownDocument(_document);
+                    _document = new List<List<string>>();
+                }
+            }
+
+            _beginReport = false;
+
             if (EOJSeparator(_pageBuff))
             {
                 GetEOJSeparatorFields(_pageBuff);
@@ -924,22 +989,31 @@ namespace Hercules_Prt
             {
                 if (ckbTXTOutput.Checked)
                 {
+                    processedDocument = true;
                     txtOut.ProcessReport(_document, BOJFieldValues, EOJFieldValues);
                 }
 
                 if (ckbRTFOutput.Checked)
                 {
+                    processedDocument = true;
                     rtfOut.ProcessReport(_document, BOJFieldValues, EOJFieldValues);
                 }
 
                 if (ckbPDFOutput.Checked)
                 {
+                    processedDocument = true;
                     pdfOut.ProcessReport(_document, BOJFieldValues, EOJFieldValues);
                 }
 
                 if (ckbHTMLOutput.Checked)
                 {
+                    processedDocument = true;
                     htmlOut.ProcessReport(_document, BOJFieldValues, EOJFieldValues);
+                }
+
+                if (processedDocument)
+                {
+                    docsProcessed++;
                 }
 
                 _endOfReport = false;
@@ -948,11 +1022,44 @@ namespace Hercules_Prt
             _pageBuff = new List<string>();
         }
 
+        private void ProcessUnknownDocument(List<List<String>> document)
+        {
+            if (document.Count > 0)
+            {
+                if (rbOutputUnmatchedPages.Checked)
+                {
+                    if (outputFileStream == null)
+                    {
+                        OpenOutputFileStream();
+                    }
+
+                    foreach (List<string> lines in document)
+                    {
+                        foreach (string line in lines)
+                        {
+                            outputFileStream.WriteLine(line);
+                        }
+                    }
+
+                    outputFileStream.Close();
+                    outputFileStream.Dispose();
+                    outputFileStream = null;
+                }
+                unmatchedDocs++;
+            }
+        }
+
         private bool BOJSeparator(List<string> pageBuff)
         {
-            if (BOJQualifications.Count > 0)
+            return IsSeparator(BOJQualifications, pageBuff, ref _beginReport);
+        }
+
+        private bool IsSeparator(List<CustomQualificationData> Qualifications, List<string> pageBuff, ref bool reportIndicator)
+        {
+            if (Qualifications.Count > 0)
             {
-                foreach (var qual in BOJQualifications)
+                int qualFound = 0;
+                foreach (var qual in Qualifications)
                 {
                     if (qual.mustExist)
                     {
@@ -961,20 +1068,27 @@ namespace Hercules_Prt
                         {
                             int col = Convert.ToInt32(qual.column);
                             int count = qual.values.Count;
+                            int itemFound = 0;
                             foreach (string item in qual.values)
                             {
                                 int len = item.Length;
-                                if (pageBuff[curLine - 1].PadRight(col + len).Substring(col - 1, len) == item)
+                                string testText = pageBuff[curLine - 1].PadRight(col + len).Substring(col - 1, len);
+                                if (testText == item)
                                 {
-                                    return true;
+                                    qualFound++;
+                                    itemFound++;
                                 }
                             }
-                            return false;
+                            if (itemFound == 0) { return false; }
                         }
                         else { return false; }
                     }
                 }
-                return true;
+                if (qualFound > 0)
+                {
+                    reportIndicator = true;
+                    return true;
+                }
             }
             return false;
         }
@@ -1017,23 +1131,26 @@ namespace Hercules_Prt
                     item.Cells[2].Value != null && item.Cells[3].Value != null)
                 {
                     bool mustExist = item.Cells[0].Value.ToString().ToBool();
-                    int line = Convert.ToInt32(item.Cells[1].Value.ToString());
-                    int col = Convert.ToInt32(item.Cells[2].Value.ToString());
-                    string value = item.Cells[3].Value.ToString();
-                    int i = BOJQualifications.FindIndex(x => x.line == line && x.column == col);
-                    if (i > -1)
+                    if (mustExist)
                     {
-                        BOJQualifications[i].values.Add(value);
-                    }
-                    else
-                    {
-                        CustomQualificationData data = new CustomQualificationData();
-                        data.mustExist = mustExist;
-                        data.column = col;
-                        data.line = line;
-                        data.values = new List<string>();
-                        data.values.Add(value);
-                        BOJQualifications.Add(data);
+                        int line = Convert.ToInt32(item.Cells[1].Value.ToString());
+                        int col = Convert.ToInt32(item.Cells[2].Value.ToString());
+                        string value = item.Cells[3].Value.ToString();
+                        int i = BOJQualifications.FindIndex(x => x.line == line && x.column == col);
+                        if (i > -1)
+                        {
+                            BOJQualifications[i].values.Add(value);
+                        }
+                        else
+                        {
+                            CustomQualificationData data = new CustomQualificationData();
+                            data.mustExist = mustExist;
+                            data.column = col;
+                            data.line = line;
+                            data.values = new List<string>();
+                            data.values.Add(value);
+                            BOJQualifications.Add(data);
+                        }
                     }
                 }
             }
@@ -1041,35 +1158,7 @@ namespace Hercules_Prt
 
         private bool EOJSeparator(List<string> pageBuff)
         {
-            if (EOJQualifications.Count > 0)
-            {
-                foreach (var qual in EOJQualifications)
-                {
-                    if (qual.mustExist)
-                    {
-                        int curLine = Convert.ToInt32(qual.line);
-                        if (curLine < pageBuff.Count)
-                        {
-                            int col = Convert.ToInt32(qual.column);
-                            int count = qual.values.Count;
-                            int found = 0;
-                            foreach (string item in qual.values)
-                            {
-                                int len = item.Length;
-                                if (pageBuff[curLine - 1].PadRight(col + len).Substring(col - 1, len) == item)
-                                {
-                                    found++;
-                                }
-                            }
-                            if (found == 0) { return false; }
-                        }
-                        else { return false; }
-                    }
-                }
-                _endOfReport = true;
-                return true;
-            }
-            return false;
+            return IsSeparator(EOJQualifications, pageBuff, ref _endOfReport);
         }
 
         private void GetEOJSeparatorFields(List<string> pageBuff)
@@ -1110,23 +1199,26 @@ namespace Hercules_Prt
                     item.Cells[2].Value != null && item.Cells[3].Value != null)
                 {
                     bool mustExist = item.Cells[0].Value.ToString().ToBool();
-                    int line = Convert.ToInt32(item.Cells[1].Value.ToString());
-                    int col = Convert.ToInt32(item.Cells[2].Value.ToString());
-                    string value = item.Cells[3].Value.ToString();
-                    int i = EOJQualifications.FindIndex(x => x.line == line && x.column == col);
-                    if (i > -1)
+                    if (mustExist)
                     {
-                        EOJQualifications[i].values.Add(value);
-                    }
-                    else
-                    {
-                        CustomQualificationData data = new CustomQualificationData();
-                        data.mustExist = mustExist;
-                        data.column = col;
-                        data.line = line;
-                        data.values = new List<string>();
-                        data.values.Add(value);
-                        EOJQualifications.Add(data);
+                        int line = Convert.ToInt32(item.Cells[1].Value.ToString());
+                        int col = Convert.ToInt32(item.Cells[2].Value.ToString());
+                        string value = item.Cells[3].Value.ToString();
+                        int i = EOJQualifications.FindIndex(x => x.line == line && x.column == col);
+                        if (i > -1)
+                        {
+                            EOJQualifications[i].values.Add(value);
+                        }
+                        else
+                        {
+                            CustomQualificationData data = new CustomQualificationData();
+                            data.mustExist = mustExist;
+                            data.column = col;
+                            data.line = line;
+                            data.values = new List<string>();
+                            data.values.Add(value);
+                            EOJQualifications.Add(data);
+                        }
                     }
                 }
             }
@@ -1323,25 +1415,20 @@ namespace Hercules_Prt
         {
             if (xmlConfiguration.definitionFiles.selectedFile.Text == "")
             {
-                saveFileDialog1.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
-                saveFileDialog1.FileName = cbxPrinterDefinitionFile.Text;
-                DialogResult dr = saveFileDialog1.ShowDialog();
-
-                if (dr == DialogResult.Cancel)
-                {
-                    return;
-                }
-
-                cbxPrinterDefinitionFile.Text = saveFileDialog1.FileName;
-                cbxPrinterDefinitionFile.Items.Add(saveFileDialog1.FileName);
-                xmlConfiguration.definitionFiles.selectedFile.Text = saveFileDialog1.FileName;
-                xmlConfiguration.definitionFiles.filePicks.Add(new FileName(saveFileDialog1.FileName));
+                if (!SavePrinterDefinitionFile()) return;
             }
             UpdatePrinterDefinitions();
-            //cfg.SavePrinterDefinitions(cbxPrinterDefinitionFile.Text);
         }
 
         private void mnuSavePrinterDefinitionFileAs_Click(object sender, EventArgs e)
+        {
+            if (!SavePrinterDefinitionFile()) return;
+
+            UpdatePrinterDefinitions();
+            xmlHerculesPrt.Save(cbxPrinterDefinitionFile.Text);
+        }
+
+        private bool SavePrinterDefinitionFile()
         {
             saveFileDialog1.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
             saveFileDialog1.FileName = cbxPrinterDefinitionFile.Text;
@@ -1349,15 +1436,14 @@ namespace Hercules_Prt
 
             if (dr == DialogResult.Cancel)
             {
-                return;
+                return false;
             }
 
             cbxPrinterDefinitionFile.Text = saveFileDialog1.FileName;
             cbxPrinterDefinitionFile.Items.Add(saveFileDialog1.FileName);
-            xmlConfiguration.definitionFiles.selectedFile.Text = openFileDialog1.FileName;
-            xmlConfiguration.definitionFiles.filePicks.Add(new FileName(openFileDialog1.FileName));
-            UpdatePrinterDefinitions();
-            xmlHerculesPrt.Save(cbxPrinterDefinitionFile.Text);
+            xmlConfiguration.definitionFiles.selectedFile.Text = saveFileDialog1.FileName;
+            xmlConfiguration.definitionFiles.filePicks.Add(new FileName(saveFileDialog1.FileName));
+            return true;
         }
 
         private void mnuExit_Click(object sender, EventArgs e)
@@ -1594,7 +1680,8 @@ namespace Hercules_Prt
 
         private void btnTestPacketsFile_Click(object sender, EventArgs e)
         {
-            openFileDialog1.Filter = "RAW files (*.raw)|*.raw|All files (*.*)|*.*";
+            openFileDialog1.Filter = "RAW files (*.raw)|*.raw|Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            openFileDialog1.DefaultExt = cbxTestPacketsFile.Text.GetExtension();
             openFileDialog1.FileName = cbxTestPacketsFile.Text;
             DialogResult dr = openFileDialog1.ShowDialog();
 
@@ -1917,6 +2004,65 @@ namespace Hercules_Prt
                 cbxLPDLPRWorkDir.Text = folderBrowserDialog1.SelectedPath;
                 cbxLPDLPRWorkDir.Items.Add(folderBrowserDialog1.SelectedPath); // Add
             }
+        }
+
+        private void ckbConnectOnStart_CheckedChanged(object sender, EventArgs e)
+        {
+            xmlHerculesPrt.Connection.ConnectAtStartChecked = ckbConnectOnStart.Checked.ToString();
+        }
+
+        private void PrtMain_Shown(object sender, EventArgs e)
+        {
+            if (closeApplication)
+            {
+                this.Close();
+            }
+        }
+
+        private void btnOutputUnmatched_Click(object sender, EventArgs e)
+        {
+            outputFileName = GetOutputUnmatchedFile();
+        }
+
+        private string GetOutputUnmatchedFile()
+        {
+            openFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            openFileDialog1.DefaultExt = cbxUnmatchPagesFile.Text.GetExtension();
+            openFileDialog1.FileName = cbxUnmatchPagesFile.Text;
+            DialogResult dr = openFileDialog1.ShowDialog();
+
+            if (dr == DialogResult.OK)
+            {
+                cbxUnmatchPagesFile.Text = openFileDialog1.FileName;
+                cbxUnmatchPagesFile.Items.Add(openFileDialog1.FileName);
+                return cbxUnmatchPagesFile.Text;
+            }
+
+            return string.Empty;
+        }
+
+        private void rbDeleteUnmatchedPages_CheckedChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void rbOutputUnmatchedPages_CheckedChanged(object sender, EventArgs e)
+        {
+            btnOpenUnmatchedFile.Enabled = rbOutputUnmatchedPages.Checked;
+        }
+
+        private void OpenOutputFileStream()
+        {
+            while (outputFileName == string.Empty)
+            {
+                outputFileName = GetOutputUnmatchedFile();
+            }
+
+            outputFileStream = new StreamWriter(outputFileName, true);
+        }
+
+        private void btnOpenUnmatchedFile_Click(object sender, EventArgs e)
+        {
+            OpenOutputFileStream();
         }
     }
 }

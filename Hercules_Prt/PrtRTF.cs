@@ -9,11 +9,11 @@ namespace Hercules_Prt
 {
     class PrtRTF
     {
-        private static String _rtfHdr = "{\\rtf1\\ansi\\deff0\\deflang1033{\\fonttbl{\\f0\\fnil\\fcharset0 Courier;}}\r\n";
-        private static String _rtfDoc = "\\landscape\\paperh12240\\paperw20160\\margl720\\margr720\\margt720\\margb720\\pard\\f0\\fs22 ";
+        private static String _rtfHdr = "{\\rtf1\\ansi\\deff0\\deflang1033{\\fonttbl{\\f0\\fnil\\fcharset0 Courier New;}}";
+        private static String _rtfDoc = "\\landscape\\paperh12240\\paperw15840\\margl720\\margr720\\margt720\\margb720\\pard\\sl-173\\slmult0\\f0\\fs20 ";
         private static String _rtfEnd = "}\r\n";
         private static String _rtfPage = "\\page ";
-        private static String _rtfNL = "\\par\r\n";
+        private static String _rtfNL = "\\par ";
 
         public XMLHerculesPrt XMLHerculesPrt { get; private set; } = null;
 
